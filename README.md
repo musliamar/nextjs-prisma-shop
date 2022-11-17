@@ -6,4 +6,4 @@ NextJS + TailwindCSS + Prisma + MySQL
 
 # Notes
 
-Used `blog-starter` example from NestJS repo.
+Used `blog-starter` example from NextJS repo.

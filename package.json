@@ -7,6 +7,8 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@prisma/client": "^4.6.1",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "classnames": "^2.3.1",
     "date-fns": "^2.28.0",
     "gray-matter": "^4.0.3",
@@ -23,6 +25,7 @@
     "@types/react-dom": "^18.0.6",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
+    "prisma": "^4.6.1",
     "tailwindcss": "^3.1.4"
   }
 }
