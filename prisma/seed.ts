@@ -6,15 +6,27 @@ const userData: Prisma.UserCreateInput[] = [
   {
     name: 'Amar',
     email: 'amar@amarmusli.ch',
-    posts: {
-      create: [
-        {
-          title: 'Testing connection',
-          content: 'It works',
-          published: true,
-        },
-      ],
-    },
+  }
+]
+
+const productData: Prisma.ProductCreateInput[] = [
+  {
+    manufacturer: 'MS 1',
+    name: 'Keyboard 1',
+    attributes: '{"color": "blue"}',
+    images: 'keyboard1.jpg, keyboard2.jpg',
+    prices: '{"usd": "100"}, {"eur": "90"}',
+    slug: 'keyboard-1',
+    published: true
+  },
+  {
+    manufacturer: 'MS 2',
+    name: 'Keyboard 2',
+    attributes: '{"color": "red"}',
+    images: 'keyboard2.jpg',
+    prices: '{"usd": "90"}, {"eur": "80"}',
+    slug: 'keyboard-2',
+    published: true
   }
 ]
 
@@ -25,6 +37,12 @@ async function main() {
       data: u,
     })
     console.log(`Created user with id: ${user.id}`)
+  }
+  for (const p of productData) {
+    const product = await prisma.product.create({
+      data: p,
+    })
+    console.log(`Created product ${product.name}`)
   }
   console.log(`Seeding finished.`)
 }

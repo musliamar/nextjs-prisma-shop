@@ -3,12 +3,12 @@ import Homepage from '../components/homepage'
 import Layout from '../components/layout'
 import Head from 'next/head'
 import { APP_NAME } from '../lib/constants'
-import Post from '../interfaces/post'
+import Product from '../interfaces/product'
 import prisma from '../lib/prisma'
 import { makeSerializable } from '../lib/util'
 
 type Props = {
-  products: Post[]
+  products: Product[]
 }
 
 export default function Index({ products }: Props) {
@@ -28,7 +28,7 @@ export default function Index({ products }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const products = await prisma.post.findMany({
+  const products = await prisma.product.findMany({
     where: { published: true },
   })
   

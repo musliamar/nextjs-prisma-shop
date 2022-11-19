@@ -1,15 +1,24 @@
-import type Author from '../interfaces/author'
 
 type Props = {
-    title: string 
-    content: string
-    viewCount: number
+    name: string 
+    manufacturer: string
+    attributes: string
     id: number
+    images: string
   }
 
-const Product = ({title, content, viewCount, id}: Props) => {
+const Product = ({name, manufacturer, images: imagesToSplit, attributes: attributesToParse, id}: Props) => {
+  const attributes = JSON.parse(attributesToParse)
+  const images = imagesToSplit.split(', ')
+  
   return (
-    <div>{title} {content} {viewCount} {id}</div>
+    <div className="w-64 flex flex-col">
+        <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+          <img src={'/media/'+images[0]} className="h-full w-full object-cover object-center group-hover:opacity-75" />
+        </div>
+        <h3 className="mt-4 text-sm text-gray-700">{name}</h3>
+        <p className="mt-1 text-lg font-medium text-gray-900">{manufacturer}</p>
+    </div>
   )
 }
 

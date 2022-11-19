@@ -1,26 +1,26 @@
 import { APP_NAME } from '../lib/constants'
-import type Post from '../interfaces/post'
+import type ProductType from '../interfaces/product'
 import Product from './product-card'
+import Link from 'next/link';
 
 type Props = {
-  products: Post[]
+  products: ProductType[]
 }
 
 const Intro = ({products}: Props) => {
-  console.log(products)
+  
   return (
-    <section className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12">
-      <h1 className="text-xl md:text-3xl font-bold tracking-tighter leading-tight md:pr-8">
+    <section className="flex flex-col items-left md:justify-between mt-16 mb-16 md:mb-12">
+      <h1 className="text-xl mb-4 md:text-3xl font-bold tracking-tighter leading-tight md:pr-8">
         New products
       </h1>
-      <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        This will be {APP_NAME}.
-      </h4>
-      {products.map((product) => {
-        const {title, content, viewCount, id} = product;
+      <div className="flex flex-row gap-x-10">
+        {products.map((product) => {
+        const {manufacturer, name, id, attributes, images} = product;
         return(
-        <Product key={id} title={title} content={content} viewCount={viewCount} id={id} />
+          <Link href={'/products/'+product.slug}><Product key={id} id={id} images={images} manufacturer={manufacturer} name={name} attributes={attributes} /></Link>
       )})}
+      </div>
     </section>
     
   )

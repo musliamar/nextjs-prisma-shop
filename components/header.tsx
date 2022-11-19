@@ -6,12 +6,11 @@ const Header = () => {
 
   return (
  
-<div className="bg-white">
+<div className="bg-white border-b border-gray-200">
   <header className="relative bg-white">
     <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">Get free delivery on orders over $100</p>
 
-    <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="border-b border-gray-200">
+    <nav aria-label="Top" className="container mx-auto px-5">
         <div className="flex h-16 items-center">
           <button type="button" className="rounded-md bg-white p-2 text-gray-400 lg:hidden">
             <span className="sr-only">Open menu</span>
@@ -212,7 +211,6 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </div>
     </nav>
   </header>
   <div className="relative z-40 lg:hidden" role="dialog" aria-modal="true">
