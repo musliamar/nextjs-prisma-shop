@@ -10,6 +10,8 @@ type ProductType = {
   prices: string
   published: boolean
   slug: string
+  categorySlug: string
+  categoryId: number
 }
 
 export default ProductType

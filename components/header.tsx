@@ -1,8 +1,11 @@
 import {useState} from 'react'
+import type CategoryType from '../interfaces/category'
 
-const Header = () => {
+type Props = {
+  categories?: CategoryType[]
+}
 
-  const [open, setOpen] = useState('');
+const Header = ({categories}: Props) => {
 
   return (
  
@@ -30,149 +33,7 @@ const Header = () => {
         
           <div className="hidden lg:ml-8 lg:block lg:self-stretch">
             <div className="flex h-full space-x-8">
-              <div className="flex">
-                <div className="relative flex">
-                  <button onMouseEnter={() => setOpen('women')} onMouseLeave={() => setOpen('')} type="button" className="border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out" aria-expanded="false">Women</button>
-                </div>
-
-               
-                {open === 'women' 
-                && <div className="absolute inset-x-0 top-full text-sm text-gray-500">
-                  <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
-
-                  <div className="relative bg-white">
-                    <div className="mx-auto max-w-7xl px-8">
-                      <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
-                        <div className="col-start-2 grid grid-cols-2 gap-x-8">
-                          <div className="group relative text-base sm:text-sm">
-                            <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                              <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg" alt="Models sitting back to back, wearing Basic Tee in black and bone." className="object-cover object-center" />
-                            </div>
-                            <a href="#" className="mt-6 block font-medium text-gray-900">
-                              <span className="absolute inset-0 z-10" aria-hidden="true"></span>
-                              New Arrivals
-                            </a>
-                            <p aria-hidden="true" className="mt-1">Shop now</p>
-                          </div>
-
-                          <div className="group relative text-base sm:text-sm">
-                            <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                              <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg" alt="Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees." className="object-cover object-center" />
-                            </div>
-                            <a href="#" className="mt-6 block font-medium text-gray-900">
-                              <span className="absolute inset-0 z-10" aria-hidden="true"></span>
-                              Basic Tees
-                            </a>
-                            <p aria-hidden="true" className="mt-1">Shop now</p>
-                          </div>
-                        </div>
-                        <div className="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
-                          <div>
-                            <p id="Clothing-heading" className="font-medium text-gray-900">Clothing</p>
-                            <ul role="list" aria-labelledby="Clothing-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                              <li className="flex">
-                                <a href="#" className="hover:text-gray-800">Tops</a>
-                              </li>
-                            </ul>
-                          </div>
-
-                          <div>
-                            <p id="Accessories-heading" className="font-medium text-gray-900">Accessories</p>
-                            <ul role="list" aria-labelledby="Accessories-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                              <li className="flex">
-                                <a href="#" className="hover:text-gray-800">Watches</a>
-                              </li>
-                            </ul>
-                          </div>
-
-                          <div>
-                            <p id="Brands-heading" className="font-medium text-gray-900">Brands</p>
-                            <ul role="list" aria-labelledby="Brands-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                              <li className="flex">
-                                <a href="#" className="hover:text-gray-800">Full Nelson</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>}
-              </div>
-
-              <div className="flex">
-                <div className="relative flex">
-                  <button onMouseEnter={() => setOpen('men')} onMouseLeave={() => setOpen('')} type="button" className="border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out" aria-expanded="false">Men</button>
-                </div>
-
-               
-                {open === 'men' 
-                && <div className="absolute inset-x-0 top-full text-sm text-gray-500">
-                  <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
-
-                  <div className="relative bg-white">
-                    <div className="mx-auto max-w-7xl px-8">
-                      <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
-                        <div className="col-start-2 grid grid-cols-2 gap-x-8">
-                          <div className="group relative text-base sm:text-sm">
-                            <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                              <img src="https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg" alt="Drawstring top with elastic loop closure and textured interior padding." className="object-cover object-center" />
-                            </div>
-                            <a href="#" className="mt-6 block font-medium text-gray-900">
-                              <span className="absolute inset-0 z-10" aria-hidden="true"></span>
-                              New Arrivals
-                            </a>
-                            <p aria-hidden="true" className="mt-1">Shop now</p>
-                          </div>
-
-                          <div className="group relative text-base sm:text-sm">
-                            <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                              <img src="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg" alt="Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt." className="object-cover object-center" />
-                            </div>
-                            <a href="#" className="mt-6 block font-medium text-gray-900">
-                              <span className="absolute inset-0 z-10" aria-hidden="true"></span>
-                              Artwork Tees
-                            </a>
-                            <p aria-hidden="true" className="mt-1">Shop now</p>
-                          </div>
-                        </div>
-                        <div className="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
-                          <div>
-                            <p id="Clothing-heading" className="font-medium text-gray-900">Clothing</p>
-                            <ul role="list" aria-labelledby="Clothing-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                              <li className="flex">
-                                <a href="#" className="hover:text-gray-800">Tops</a>
-                              </li>
-                            </ul>
-                          </div>
-
-                          <div>
-                            <p id="Accessories-heading" className="font-medium text-gray-900">Accessories</p>
-                            <ul role="list" aria-labelledby="Accessories-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                              <li className="flex">
-                                <a href="#" className="hover:text-gray-800">Watches</a>
-                              </li>
-                            </ul>
-                          </div>
-
-                          <div>
-                            <p id="Brands-heading" className="font-medium text-gray-900">Brands</p>
-                            <ul role="list" aria-labelledby="Brands-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                              <li className="flex">
-                                <a href="#" className="hover:text-gray-800">Re-Arranged</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>}
-              </div>
-
-              <a href="#" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Company</a>
-
-              <a href="#" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Stores</a>
+              {categories?.map((category) => <a href={'/'+category.slug} className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">{category.name}</a>)}
             </div>
           </div>
 

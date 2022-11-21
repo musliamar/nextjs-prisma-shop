@@ -2,25 +2,27 @@ import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '../../components/container'
 import Body from '../../components/body'
-import Header from '../../components/header'
 import Layout from '../../components/layout'
 import prisma from '../../lib/prisma'
 import Head from 'next/head'
 import { APP_NAME } from '../../lib/constants'
 import type ProductType from '../../interfaces/product'
+import type CategoryType from '../../interfaces/category'
 import { makeSerializable } from '../../lib/util'
 
 type Props = {
   product: ProductType
+  category: CategoryType
+  categories: CategoryType[]
 }
 
-export default function Post({ product }: Props) {
+export default function Product({ product, categories }: Props) {
   const router = useRouter()
   if (!router.isFallback && !product?.slug) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <Layout>
+    <Layout categories={categories}>
       <Container>
         {router.isFallback ? (
           <Body details={'Loading ...'} />
@@ -44,18 +46,23 @@ export default function Post({ product }: Props) {
 
 type Params = {
   params: {
-    slug: string
+    product: string
+    category: string
   }
 }
 
 export async function getStaticProps({ params }: Params) {
-
+  const categories = await prisma.category.findMany();
   const product = await prisma.product.findUnique({
-    where: { slug: params.slug },
+    where: { slug: params.product },
   })
+
+  const category = await prisma.category.findUnique({
+    where: {id: product.categoryId}
+  });
   
   return {
-    props: {product: makeSerializable(product)}
+    props: {product: makeSerializable(product), categories: categories, category: category}
   }
 }
 
@@ -69,7 +76,8 @@ export async function getStaticPaths() {
     paths: products.map((product: any) => {
       return {
         params: {
-          slug: product.slug,
+          category: product.categorySlug,
+          product: product.slug
         },
       }
     }),

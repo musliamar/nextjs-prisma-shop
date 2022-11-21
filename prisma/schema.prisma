@@ -10,7 +10,17 @@ datasource db {
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
-  name  String?
+  name  String
+}
+
+model Category {
+  id    Int     @id @default(autoincrement())
+  name String
+  slug  String
+  products Product[]
+
+  @@unique([id, slug])
+  @@unique([slug])
 }
 
 model Product {
@@ -23,6 +33,9 @@ model Product {
   images String
   prices String
   slug String
+  category    Category    @relation(fields: [categoryId, categorySlug], references: [id, slug])
+  categorySlug String
+  categoryId  Int
   published Boolean  @default(false)
 
   @@unique([slug])
