@@ -14,13 +14,19 @@ type Props = {
   categories: CategoryType[]
 }
 
+type Params = {
+  params: {
+    category: string
+  }
+}
+
 export default function Index({ products, category, categories }: Props) {
   
   return (
     <>
       <Layout categories={categories}>
         <Head>
-          <title>{category.name} - {APP_NAME}</title>
+          <title>{category.name + ' - ' + APP_NAME}</title>
         </Head>
         <Container>
           <Category products={products} category={category} />
@@ -29,12 +35,6 @@ export default function Index({ products, category, categories }: Props) {
     </>
   )
 }
-
-type Params = {
-    params: {
-      category: string
-    }
-  }
   
   export async function getStaticProps({ params }: Params) {
 

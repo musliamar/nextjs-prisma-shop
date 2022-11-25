@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '../../components/container'
-import Body from '../../components/body'
+import SingleProduct from '../../components/single-product'
 import Layout from '../../components/layout'
 import prisma from '../../lib/prisma'
 import Head from 'next/head'
@@ -21,34 +21,30 @@ export default function Product({ product, categories }: Props) {
   if (!router.isFallback && !product?.slug) {
     return <ErrorPage statusCode={404} />
   }
+
+  const {name: productName} = product;
+
   return (
     <Layout categories={categories}>
+      <Head>
+        <title>
+          {productName + ' - ' + APP_NAME}
+        </title>
+        <meta property="og:image" content={'tba'} />
+      </Head>
       <Container>
         {router.isFallback ? (
-          <Body details={'Loading ...'} />
+          <SingleProduct details={'Loading ...'} />
         ) : (
           <>
             <article className="mb-32">
-              <Head>
-                <title>
-                  {product.name} - {APP_NAME}
-                </title>
-                <meta property="og:image" content={'tba'} />
-              </Head>
-              <Body details={product} />
+              <SingleProduct details={product} />
             </article>
           </>
         )}
       </Container>
     </Layout>
   )
-}
-
-type Params = {
-  params: {
-    product: string
-    category: string
-  }
 }
 
 export async function getStaticProps({ params }: Params) {
@@ -58,11 +54,18 @@ export async function getStaticProps({ params }: Params) {
   })
 
   const category = await prisma.category.findUnique({
-    where: {id: product.categoryId}
+    where: {id: product?.categoryId}
   });
   
   return {
     props: {product: makeSerializable(product), categories: categories, category: category}
+  }
+}
+
+type Params = {
+  params: {
+    product: string
+    category: string
   }
 }
 

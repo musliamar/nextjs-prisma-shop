@@ -26,7 +26,7 @@ CREATE TABLE `Product` (
     `updatedAt` DATETIME(3) NOT NULL,
     `manufacturer` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `attributes` VARCHAR(191) NOT NULL,
+    `attributes` JSON NULL,
     `images` VARCHAR(191) NOT NULL,
     `prices` VARCHAR(191) NOT NULL,
     `slug` VARCHAR(191) NOT NULL,

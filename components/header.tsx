@@ -33,7 +33,7 @@ const Header = ({categories}: Props) => {
         
           <div className="hidden lg:ml-8 lg:block lg:self-stretch">
             <div className="flex h-full space-x-8">
-              {categories?.map((category) => <a href={'/'+category.slug} className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">{category.name}</a>)}
+              {categories?.map((category) => <a key={category.slug} href={'/'+category.slug} className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">{category.name}</a>)}
             </div>
           </div>
 

@@ -29,7 +29,7 @@ model Product {
   updatedAt DateTime @updatedAt
   manufacturer     String
   name   String
-  attributes String
+  attributes Json?
   images String
   prices String
   slug String

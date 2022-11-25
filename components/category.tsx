@@ -1,7 +1,7 @@
 import { APP_NAME } from '../lib/constants'
 import type ProductType from '../interfaces/product'
 import type CategoryType from '../interfaces/category'
-import Product from './product-card'
+import ProductCard from './product-card'
 import Link from 'next/link';
 
 type Props = {
@@ -22,7 +22,7 @@ const Category = ({products, category}: Props) => {
         {products.map((product) => {
         const {manufacturer, name, id, attributes, images, slug} = product;
         return(
-          <Link href={categorySlug+'/'+slug}><Product key={id} id={id} images={images} manufacturer={manufacturer} name={name} attributes={attributes} /></Link>
+          <Link key={slug} href={categorySlug+'/'+slug}><ProductCard key={id} id={id} images={images} manufacturer={manufacturer} name={name} attributes={attributes} /></Link>
       )})}
       </div>
     </section>

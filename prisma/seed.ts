@@ -18,7 +18,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
         {
           manufacturer: 'MS 1',
           name: 'Keyboard 1',
-          attributes: '{"color": "blue"}',
+          attributes: '{"key1": "value1", "key2": "value2"}',
           images: 'keyboard1.jpg, keyboard2.jpg',
           prices: '{"usd": "100"}, {"eur": "90"}',
           slug: 'keyboard-1',
@@ -27,7 +27,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
         {
           manufacturer: 'MS 2',
           name: 'Keyboard 2',
-          attributes: '{"color": "red"}',
+          attributes: '{"key1": "value1", "key2": "value2"}',
           images: 'keyboard2.jpg',
           prices: '{"usd": "90"}, {"eur": "80"}',
           slug: 'keyboard-2',
@@ -44,7 +44,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
         {
           manufacturer: 'DELL 1',
           name: 'Laptop 1',
-          attributes: '{"color": "blue"}',
+          attributes: '{"key1": "value1", "key2": "value2"}',
           images: 'keyboard1.jpg, keyboard2.jpg',
           prices: '{"usd": "100"}, {"eur": "90"}',
           slug: 'laptop-1',
@@ -53,7 +53,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
         {
           manufacturer: 'DELL 2',
           name: 'Laptop 2',
-          attributes: '{"color": "red"}',
+          attributes: '{"key1": "value1", "key2": "value2"}',
           images: 'keyboard2.jpg',
           prices: '{"usd": "90"}, {"eur": "80"}',
           slug: 'laptop-2',
@@ -70,7 +70,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
         {
           manufacturer: 'Samsung 1',
           name: 'Phone 1',
-          attributes: '{"color": "blue"}',
+          attributes: '{"key1": "value1", "key2": "value2"}',
           images: 'keyboard1.jpg, keyboard2.jpg',
           prices: '{"usd": "100"}, {"eur": "90"}',
           slug: 'phone-1',
@@ -79,7 +79,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
         {
           manufacturer: 'Samsung 2',
           name: 'Phone 2',
-          attributes: '{"color": "red"}',
+          attributes: '{"key1": "value1", "key2": "value2"}',
           images: 'keyboard2.jpg',
           prices: '{"usd": "90"}, {"eur": "80"}',
           slug: 'phone-2',

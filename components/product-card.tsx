@@ -7,8 +7,10 @@ type Props = {
     images: string
   }
 
-const Product = ({name, manufacturer, images: imagesToSplit, attributes: attributesToParse, id}: Props) => {
-  const attributes = JSON.parse(attributesToParse)
+const Product = ({name, manufacturer, images: imagesToSplit, attributes: attributesToSplit, id}: Props) => {
+
+  const attributesToParse = attributesToSplit.split(', ')
+  const attributes = attributesToParse.map((attribute) => JSON.parse(attribute))
   const images = imagesToSplit.split(', ')
   
   return (
