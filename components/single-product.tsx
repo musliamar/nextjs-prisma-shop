@@ -6,7 +6,7 @@ type Props = {
 }
 
 const Single = ({ details }: Props) => {
-  const {name, manufacturer, attributes: attributesToSplit, prices: pricesToSplit, images: imagesToSplit} = details;
+  const {name, description, manufacturer, attributes: attributesToSplit, price, images: imagesToSplit} = details;
  
   const attributesRaw = JSON.parse(attributesToSplit)
   const attributes = [];
@@ -15,15 +15,20 @@ const Single = ({ details }: Props) => {
     attributes.push({name: a, value: attributesRaw[a]});
 
   const images = imagesToSplit.split(', ')
-  const pricesToParse = pricesToSplit.split(', ')
-  const prices = pricesToParse.map((price) => JSON.parse(price))
 
   return (
     <div className="bg-white">
   <div className="flex flex-row pt-6 gap-14 justify-start">
-    <div className="flex flex-col w-1/2">
-      <div className="aspect-w-3 aspect-h-4 rounded-lg lg:block">
-        <img src={'/media/'+images[0]} alt="Two each of gray, white, and black shirts laying flat." className="h-full w-full object-scale-down object-center" />
+    <div className="flex flex-row w-1/2">
+    {images.length > 1 && 
+      <div className="flex flex-col w-1/4 pt-6 gap-14 justify-start">
+      {images.map((image) => 
+      <div key={image} className="w-32 rounded-lg lg:block">
+        <img src={'/media/'+image} alt="Two each of gray, white, and black shirts laying flat." className="object-scale-down object-top" />
+      </div>)}
+      </div>}
+      <div className="aspect-w-3 aspect-h-4 w-3/4 rounded-lg lg:block">
+        <img src={'/media/'+images[0]} alt="Two each of gray, white, and black shirts laying flat." className="h-full w-full object-scale-down object-top" />
       </div>
     </div>
     <div className="flex flex-col w-1/2 max-w-lg">
@@ -33,7 +38,7 @@ const Single = ({ details }: Props) => {
         <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{name}</h1>
       </div>
         <h2 className="sr-only">Product information</h2>
-        <p className="text-3xl tracking-tight text-gray-900">${prices[0].usd}</p>
+        <p className="text-3xl tracking-tight text-gray-900">${price}</p>
 
         <div className="mt-6">
           <h3 className="sr-only">Reviews</h3>
@@ -71,7 +76,7 @@ const Single = ({ details }: Props) => {
             const {name, value} = attribute;
 
             return(
-              <div>
+              <div key={name}>
             <h3 className="text-sm font-medium text-gray-900">{name}</h3>
 
             <fieldset className="mt-4">
@@ -95,31 +100,7 @@ const Single = ({ details }: Props) => {
           <h3 className="sr-only">Description</h3>
 
           <div className="space-y-6">
-            <p className="text-base text-gray-900">The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;. Need to add an extra pop of color to your outfit? Our white tee has you covered.</p>
-          </div>
-        </div>
-
-        <div className="mt-10">
-          <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-
-          <div className="mt-4">
-            <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-              <li className="text-gray-400"><span className="text-gray-600">Hand cut and sewn locally</span></li>
-
-              <li className="text-gray-400"><span className="text-gray-600">Dyed with our proprietary colors</span></li>
-
-              <li className="text-gray-400"><span className="text-gray-600">Pre-washed &amp; pre-shrunk</span></li>
-
-              <li className="text-gray-400"><span className="text-gray-600">Ultra-soft 100% cotton</span></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-10">
-          <h2 className="text-sm font-medium text-gray-900">Details</h2>
-
-          <div className="mt-4 space-y-6">
-            <p className="text-sm text-gray-600">The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
+            <p className="text-base text-gray-900">{description}</p>
           </div>
         </div>
       </div>

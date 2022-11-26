@@ -30,8 +30,9 @@ model Product {
   manufacturer     String
   name   String
   attributes Json?
+  description String
   images String
-  prices String
+  price Int
   slug String
   category    Category    @relation(fields: [categoryId, categorySlug], references: [id, slug])
   categorySlug String

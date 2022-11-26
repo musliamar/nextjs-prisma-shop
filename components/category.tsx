@@ -20,9 +20,9 @@ const Category = ({products, category}: Props) => {
       </h1>
       <div className="flex flex-wrap flex-row gap-x-10">
         {products.map((product) => {
-        const {manufacturer, name, id, attributes, images, slug} = product;
+        const {manufacturer, name, id, attributes, images, slug, price} = product;
         return(
-          <Link key={slug} href={categorySlug+'/'+slug}><ProductCard key={id} id={id} images={images} manufacturer={manufacturer} name={name} attributes={attributes} /></Link>
+          <Link key={slug} href={categorySlug+'/'+slug}><ProductCard key={id} id={id} price={price} images={images} manufacturer={manufacturer} name={name} attributes={attributes} /></Link>
       )})}
       </div>
     </section>

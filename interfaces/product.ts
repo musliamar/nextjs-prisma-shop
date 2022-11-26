@@ -7,7 +7,8 @@ type ProductType = {
   name: string
   attributes: string
   images: string
-  prices: string
+  price: number
+  description: string
   published: boolean
   slug: string
   categorySlug: string
