@@ -20,9 +20,9 @@ const categoryData: Prisma.CategoryCreateInput[] = [
           name: 'Desktop 1',
           attributes: '{"cpu": "i3-10100F", "gpu": "GTX 1650", "motherboard": "Gigabyte", "ssd": "256 gb", "ram": "8 gb", "GPU memory": "4 gb", "OS": "Windows 10"}',
           description: 'This is <b>Desktop 1</b> description.',
-          images: 'desktop1-1.jpg, desktop1-2.jpg',
+          images: 'desktop1-1.jpg',
           price: 900,
-          slug: 'keyboard-1',
+          slug: 'desktop-1',
           published: true
         },
         {
@@ -32,7 +32,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
           description: 'This is <b>Desktop 2</b> description.',
           images: 'desktop2-1.jpg, desktop2-2.jpg',
           price: 1200,
-          slug: 'keyboard-2',
+          slug: 'desktop-2',
           published: true
         }
       ]
@@ -74,7 +74,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
         {
           manufacturer: 'Apple',
           name: 'iPhone',
-          attributes: '{"color": ["blue", "purple", "midnight", "starlight"], "storage": ["128 gb", "256 gb", "512 gb"]}',
+          attributes: '{"color": ["#00008B", "#A020F0", "#191970", "#F8F9EC"], "storage": ["128 gb", "256 gb", "512 gb"]}',
           description: 'This is <b>iPhone</b> description.',
           images: 'phone1-1.jpg, phone1-2.jpg, phone1-3.jpg, phone1-4.png',
           price: 9999,
@@ -84,7 +84,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
         {
           manufacturer: 'Samsung',
           name: 'Galaxy',
-          attributes: '{"color": ["black", "white", "burgundy", "green"], "storage": ["128 gb", "256 gb", "512 gb"]}',
+          attributes: '{"color": ["#000", "#fff", "#800020", "#008013"], "storage": ["128 gb", "256 gb", "512 gb"]}',
           description: 'This is <b>Galaxy</b> description.',
           images: 'phone2-1.jpg, phone2-2.jpg, phone2-3.jpg, phone2-4.jpg',
           price: 1500,

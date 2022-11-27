@@ -1,36 +1,20 @@
 import markdownStyles from './markdown-styles.module.css'
-import type ProductType from '../interfaces/product'
+import type ProductType from '../../interfaces/product'
+import Attributes from './attributes'
+import Images from './images'
 
 type Props = {
   details: ProductType;
 }
 
 const Single = ({ details }: Props) => {
-  const {name, description, manufacturer, attributes: attributesToSplit, price, images: imagesToSplit} = details;
- 
-  const attributesRaw = JSON.parse(attributesToSplit)
-  const attributes = [];
 
-  for(const a in attributesRaw)
-    attributes.push({name: a, value: attributesRaw[a]});
-
-  const images = imagesToSplit.split(', ')
+  const {name, description, manufacturer, attributes, price, images} = details;
 
   return (
     <div className="bg-white">
   <div className="flex flex-row pt-6 gap-14 justify-start">
-    <div className="flex flex-row w-1/2">
-    {images.length > 1 && 
-      <div className="flex flex-col w-1/4 pt-6 gap-14 justify-start">
-      {images.map((image) => 
-      <div key={image} className="w-32 rounded-lg lg:block">
-        <img src={'/media/'+image} alt="Two each of gray, white, and black shirts laying flat." className="object-scale-down object-top" />
-      </div>)}
-      </div>}
-      <div className="aspect-w-3 aspect-h-4 w-3/4 rounded-lg lg:block">
-        <img src={'/media/'+images[0]} alt="Two each of gray, white, and black shirts laying flat." className="h-full w-full object-scale-down object-top" />
-      </div>
-    </div>
+    <Images images={images} />
     <div className="flex flex-col w-1/2 max-w-lg">
 
       <div className="mt-4 lg:row-span-3 lg:mt-0">
@@ -71,29 +55,7 @@ const Single = ({ details }: Props) => {
         </div>
 
         <form className="mt-10">
-          {attributes.map((attribute) => {
-
-            const {name, value} = attribute;
-
-            return(
-              <div key={name}>
-            <h3 className="text-sm font-medium text-gray-900">{name}</h3>
-
-            <fieldset className="mt-4">
-              <legend className="sr-only">Choose a color</legend>
-              <div className="flex items-center space-x-3">
-                
-                <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
-                  <input type="radio" name="color-choice" value="White" className="sr-only" aria-labelledby="color-choice-0-label" />
-                  <span id="color-choice-0-label" className="sr-only"> White </span>
-                  {value}
-                </label>
-              </div>
-            </fieldset>
-          </div>
-            )
-          })}
-
+          <Attributes attributes={attributes} />
           <button type="submit" className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
         </form>
         <div>

@@ -1,6 +1,6 @@
 import { APP_NAME } from '../lib/constants'
 import type ProductType from '../interfaces/product'
-import Product from './product-card'
+import ProductCard from './product-card'
 import Link from 'next/link';
 
 type Props = {
@@ -18,7 +18,7 @@ const Home = ({products}: Props) => {
         {products.map((product) => {
         const {manufacturer, name, id, attributes, images, slug, price, categorySlug} = product;
         return(
-          <Link key={id} href={'/'+categorySlug+'/'+slug}><Product id={id} price={price} images={images} manufacturer={manufacturer} name={name} attributes={attributes} /></Link>
+          <Link key={id} href={'/'+categorySlug+'/'+slug}><ProductCard id={id} price={price} images={images} manufacturer={manufacturer} name={name} attributes={attributes} /></Link>
       )})}
       </div>
     </section>
