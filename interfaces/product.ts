@@ -1,5 +1,5 @@
 
-type ProductType = {
+interface ProductType {
   id: number
   createdAt: Date
   updatesAt: Date

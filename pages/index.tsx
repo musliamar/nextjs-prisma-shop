@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default function Index({ products, categories }: Props) {
-  
+
   return (
     <>
       <Layout categories={categories}>

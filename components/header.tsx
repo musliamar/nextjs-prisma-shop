@@ -1,5 +1,6 @@
-import {useState} from 'react'
 import type CategoryType from '../interfaces/category'
+import Image from 'next/image';
+import { useCount } from '../context/cartContext'
 
 type Props = {
   categories?: CategoryType[]
@@ -7,12 +8,14 @@ type Props = {
 
 const Header = ({categories}: Props) => {
 
+  const count = useCount();
+
   return (
  
 <div className="bg-white border-b border-gray-200">
   <header className="relative bg-white">
     <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">Get free delivery on orders over $100</p>
-
+    <p>Counter: {count}</p>
     <nav aria-label="Top" className="container mx-auto px-5">
         <div className="flex h-16 items-center">
           <button type="button" className="rounded-md bg-white p-2 text-gray-400 lg:hidden">
@@ -26,7 +29,7 @@ const Header = ({categories}: Props) => {
           <div className="ml-4 flex lg:ml-0">
             <a href="#">
               <span className="sr-only">Your Company</span>
-              <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+              <p>logo</p>
             </a>
           </div>
 
@@ -46,7 +49,7 @@ const Header = ({categories}: Props) => {
 
             <div className="hidden lg:ml-8 lg:flex">
               <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">
-                <img src="https://tailwindui.com/img/flags/flag-canada.svg" alt="" className="block h-auto w-5 flex-shrink-0" />
+                <p>currency</p>
                 <span className="ml-3 block text-sm font-medium">CAD</span>
                 <span className="sr-only">, change currency</span>
               </a>
@@ -100,113 +103,6 @@ const Header = ({categories}: Props) => {
               <button id="tabs-1-tab-2" className="text-gray-900 border-transparent flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium" aria-controls="tabs-1-panel-2" role="tab" type="button">Men</button>
             </div>
           </div>
-
-          <div id="tabs-1-panel-1" className="space-y-10 px-4 pt-10 pb-8" aria-labelledby="tabs-1-tab-1" role="tabpanel">
-            <div className="grid grid-cols-2 gap-x-4">
-              <div className="group relative text-sm">
-                <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                  <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg" alt="Models sitting back to back, wearing Basic Tee in black and bone." className="object-cover object-center" />
-                </div>
-                <a href="#" className="mt-6 block font-medium text-gray-900">
-                  <span className="absolute inset-0 z-10" aria-hidden="true"></span>
-                  New Arrivals
-                </a>
-                <p aria-hidden="true" className="mt-1">Shop now</p>
-              </div>
-
-              <div className="group relative text-sm">
-                <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                  <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg" alt="Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees." className="object-cover object-center" />
-                </div>
-                <a href="#" className="mt-6 block font-medium text-gray-900">
-                  <span className="absolute inset-0 z-10" aria-hidden="true"></span>
-                  Basic Tees
-                </a>
-                <p aria-hidden="true" className="mt-1">Shop now</p>
-              </div>
-            </div>
-
-            <div>
-              <p id="women-clothing-heading-mobile" className="font-medium text-gray-900">Clothing</p>
-              <ul role="list" aria-labelledby="women-clothing-heading-mobile" className="mt-6 flex flex-col space-y-6">
-                <li className="flow-root">
-                  <a href="#" className="-m-2 block p-2 text-gray-500">Tops</a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p id="women-accessories-heading-mobile" className="font-medium text-gray-900">Accessories</p>
-              <ul role="list" aria-labelledby="women-accessories-heading-mobile" className="mt-6 flex flex-col space-y-6">
-                <li className="flow-root">
-                  <a href="#" className="-m-2 block p-2 text-gray-500">Watches</a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p id="women-brands-heading-mobile" className="font-medium text-gray-900">Brands</p>
-              <ul role="list" aria-labelledby="women-brands-heading-mobile" className="mt-6 flex flex-col space-y-6">
-                <li className="flow-root">
-                  <a href="#" className="-m-2 block p-2 text-gray-500">Full Nelson</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-         
-          <div id="tabs-1-panel-2" className="space-y-10 px-4 pt-10 pb-8" aria-labelledby="tabs-1-tab-2" role="tabpanel">
-            <div className="grid grid-cols-2 gap-x-4">
-              <div className="group relative text-sm">
-                <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                  <img src="https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg" alt="Drawstring top with elastic loop closure and textured interior padding." className="object-cover object-center" />
-                </div>
-                <a href="#" className="mt-6 block font-medium text-gray-900">
-                  <span className="absolute inset-0 z-10" aria-hidden="true"></span>
-                  New Arrivals
-                </a>
-                <p aria-hidden="true" className="mt-1">Shop now</p>
-              </div>
-
-              <div className="group relative text-sm">
-                <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                  <img src="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg" alt="Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt." className="object-cover object-center" />
-                </div>
-                <a href="#" className="mt-6 block font-medium text-gray-900">
-                  <span className="absolute inset-0 z-10" aria-hidden="true"></span>
-                  Artwork Tees
-                </a>
-                <p aria-hidden="true" className="mt-1">Shop now</p>
-              </div>
-            </div>
-
-            <div>
-              <p id="men-clothing-heading-mobile" className="font-medium text-gray-900">Clothing</p>
-              <ul role="list" aria-labelledby="men-clothing-heading-mobile" className="mt-6 flex flex-col space-y-6">
-                <li className="flow-root">
-                  <a href="#" className="-m-2 block p-2 text-gray-500">Tops</a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p id="men-accessories-heading-mobile" className="font-medium text-gray-900">Accessories</p>
-              <ul role="list" aria-labelledby="men-accessories-heading-mobile" className="mt-6 flex flex-col space-y-6">
-                <li className="flow-root">
-                  <a href="#" className="-m-2 block p-2 text-gray-500">Watches</a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p id="men-brands-heading-mobile" className="font-medium text-gray-900">Brands</p>
-              <ul role="list" aria-labelledby="men-brands-heading-mobile" className="mt-6 flex flex-col space-y-6">
-                <li className="flow-root">
-                  <a href="#" className="-m-2 block p-2 text-gray-500">Re-Arranged</a>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
 
         <div className="space-y-6 border-t border-gray-200 py-6 px-4">
@@ -230,7 +126,7 @@ const Header = ({categories}: Props) => {
 
         <div className="border-t border-gray-200 py-6 px-4">
           <a href="#" className="-m-2 flex items-center p-2">
-            <img src="https://tailwindui.com/img/flags/flag-canada.svg" alt="" className="block h-auto w-5 flex-shrink-0" />
+            <p>curr logo</p>
             <span className="ml-3 block text-base font-medium text-gray-900">CAD</span>
             <span className="sr-only">, change currency</span>
           </a>

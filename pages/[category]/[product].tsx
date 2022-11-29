@@ -9,6 +9,8 @@ import { APP_NAME } from '../../lib/constants'
 import type ProductType from '../../interfaces/product'
 import type CategoryType from '../../interfaces/category'
 import { makeSerializable } from '../../lib/util'
+import { useCount, useDispatchCount } from '../../context/cartContext'
+import type { MouseEvent } from 'react'
 
 type Props = {
   product: ProductType
@@ -23,6 +25,26 @@ export default function Product({ product, categories }: Props) {
   }
 
   const {name: productName} = product;
+  const count = useCount()
+  const dispatch = useDispatchCount()
+
+  const handleIncrease = (event: MouseEvent<HTMLButtonElement>) =>
+    dispatch({
+      type: 'INCREASE',
+    })
+  const handleDecrease = (event: MouseEvent<HTMLButtonElement>) =>
+    dispatch({
+      type: 'DECREASE',
+    })
+
+  const Button = () => {
+    return (
+      <>
+    <p>Counter: {count}</p>
+    <button onClick={handleIncrease}>Increase</button>
+    </>
+    )
+  }
 
   return (
     <Layout categories={categories}>
@@ -38,7 +60,7 @@ export default function Product({ product, categories }: Props) {
         ) : (
           <>
             <article className="mb-32">
-              <SingleProduct details={product} />
+              <SingleProduct button={<Button />} count={count} details={product} />
             </article>
           </>
         )}

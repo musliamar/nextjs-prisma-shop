@@ -1,4 +1,4 @@
-type Category = {
+interface Category {
     id: number
     name: string
     slug: string
