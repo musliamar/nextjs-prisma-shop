@@ -1,3 +1,6 @@
+import { useEffect } from 'react'
+import { useStore } from '../../store/context'
+import { areArraysEqual } from '../../lib/util'
 import Container from '../../components/container'
 import Category from '../../components/category'
 import Layout from '../../components/layout'
@@ -7,6 +10,7 @@ import type ProductType from '../../interfaces/product'
 import type CategoryType from '../../interfaces/category'
 import prisma from '../../lib/prisma'
 import { makeSerializable } from '../../lib/util'
+import { useDispatch } from '../../store/context'
 
 type Props = {
   products: ProductType[]
@@ -21,10 +25,20 @@ type Params = {
 }
 
 export default function Index({ products, category, categories }: Props) {
+
+  const {categories: oldCategories} = useStore();
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(oldCategories.length === 0 || !areArraysEqual(oldCategories, categories)) dispatch({
+      type: 'SET_CATEGORIES',
+      payload: categories
+    })
+  }, [])
   
   return (
     <>
-      <Layout categories={categories}>
+      <Layout>
         <Head>
           <title>{category.name + ' - ' + APP_NAME}</title>
         </Head>
@@ -38,18 +52,17 @@ export default function Index({ products, category, categories }: Props) {
   
   export async function getStaticProps({ params }: Params) {
 
+    const categories = await prisma.category.findMany();
     const category = await prisma.category.findUnique({
         where: {slug: params.category}
     });
-
-    const categories = await prisma.category.findMany();
-
     const products = await prisma.product.findMany({
-      where: { categoryId: category.id },
+      where: { categoryId: category?.id },
     })
     
     return {
-      props: {products: makeSerializable(products), category: makeSerializable(category), categories: categories}
+      props: {products: makeSerializable(products), category: makeSerializable(category), categories: categories},
+      revalidate: 70
     }
   }
   
@@ -65,7 +78,7 @@ export default function Index({ products, category, categories }: Props) {
           },
         }
       }),
-      fallback: false,
+      fallback: 'blocking',
     }
   }
   

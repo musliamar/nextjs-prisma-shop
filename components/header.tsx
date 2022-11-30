@@ -1,21 +1,22 @@
 import type CategoryType from '../interfaces/category'
 import Image from 'next/image';
-import { useCount } from '../context/cartContext'
+import {useStore} from '../store/context'
 
 type Props = {
-  categories?: CategoryType[]
+  button: JSX.Element
 }
 
-const Header = ({categories}: Props) => {
+const Header = ({button}: Props) => {
 
-  const count = useCount();
+  const store = useStore()
+  const {categories} = store;
 
   return (
  
 <div className="bg-white border-b border-gray-200">
   <header className="relative bg-white">
     <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">Get free delivery on orders over $100</p>
-    <p>Counter: {count}</p>
+    {button}
     <nav aria-label="Top" className="container mx-auto px-5">
         <div className="flex h-16 items-center">
           <button type="button" className="rounded-md bg-white p-2 text-gray-400 lg:hidden">
