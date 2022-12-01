@@ -1,4 +1,6 @@
-import Breadcrumb from './breadcrumb'
+import Breadcrumbs from '../components/breadcrumb'
+import Header from '../components/header/header'
+import Footer from '../components/footer'
 
 type Props = {
   children?: React.ReactNode
@@ -6,10 +8,14 @@ type Props = {
 
 const Container = ({ children }: Props) => {
 
-  return <div className="container mx-auto px-5">
-            <Breadcrumb />
-            {children}
-          </div>
+  return (<>
+            <Header />
+            <main className='container mx-auto px-5'>
+              <Breadcrumbs />
+              {children}
+            </main>
+            <Footer />
+          </>)
 }
 
 export default Container

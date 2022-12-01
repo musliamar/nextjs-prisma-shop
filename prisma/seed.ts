@@ -13,6 +13,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
   {
     name: 'Computers',
     slug: 'computers',
+    isInNavigation: true,
     products: {
       create: [
         {
@@ -41,6 +42,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
   {
     name: 'Laptops',
     slug: 'laptops',
+    isInNavigation: true,
     products: {
       create: [
         {
@@ -69,6 +71,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
   {
     name: 'Phones',
     slug: 'phones',
+    isInNavigation: true,
     products: {
       create: [
         {

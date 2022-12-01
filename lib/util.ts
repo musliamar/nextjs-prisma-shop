@@ -16,3 +16,8 @@ export const areArraysEqual = (arr1: Array<any>, arr2: Array<any>) => {
       return true
     }
 }
+
+export const titleize = (string: string) => {
+    const sliced = string.split('-')
+    return (sliced.join(' '))
+}

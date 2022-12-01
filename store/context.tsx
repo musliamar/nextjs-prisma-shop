@@ -8,12 +8,12 @@ import {
 
 import type ProductType from '../interfaces/product'
 import type CategoryType from '../interfaces/category'
+import { SET_CATEGORIES, SET_CURRENCY, ADD_TO_CART } from '../lib/constants'
 
 type State = {
   choosenCurrency: string
   itemsInCart: ProductType[]
   categories: CategoryType[]
-  count: number
 }
 
 const categories: CategoryType[] = [];
@@ -22,8 +22,7 @@ const itemsInCart: ProductType[] = [];
 const initialValues = {
   choosenCurrency: 'usd',
   itemsInCart,
-  categories,
-  count: 0
+  categories
 }
 
 type Action =
@@ -39,9 +38,6 @@ type Action =
       type: 'SET_CATEGORIES'
       payload: CategoryType[]
     }
-  | {
-      type: 'INCREASE'
-    }
 
 const StateContext = createContext<State>(initialValues)
 const DispatchContext = createContext<Dispatch<Action>>(
@@ -50,17 +46,17 @@ const DispatchContext = createContext<Dispatch<Action>>(
 
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
-    case 'SET_CURRENCY':
+    case SET_CURRENCY:
       return {
         ...state,
         choosenCurrency: action.payload,
       };
-    case 'ADD_TO_CART':
+    case ADD_TO_CART:
       return {
         ...state,
-        itemsInCart: [...itemsInCart, action.payload],
+        itemsInCart: [...state.itemsInCart, action.payload],
       };
-    case 'SET_CATEGORIES':
+    case SET_CATEGORIES:
       return {
         ...state,
         categories: action.payload,

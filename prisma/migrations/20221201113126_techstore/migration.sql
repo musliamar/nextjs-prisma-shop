@@ -13,6 +13,7 @@ CREATE TABLE `Category` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `slug` VARCHAR(191) NOT NULL,
+    `isInNavigation` BOOLEAN NOT NULL,
 
     UNIQUE INDEX `Category_id_slug_key`(`id`, `slug`),
     UNIQUE INDEX `Category_slug_key`(`slug`),

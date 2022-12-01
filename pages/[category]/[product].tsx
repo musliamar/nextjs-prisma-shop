@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '../../components/container'
-import SingleProduct from '../../components/single-product/index'
+import SingleProduct from '../../components/single-product/single-product'
 import Layout from '../../components/layout'
 import prisma from '../../lib/prisma'
 import Head from 'next/head'
-import { APP_NAME } from '../../lib/constants'
+import { ADD_TO_CART, APP_NAME, SET_CATEGORIES } from '../../lib/constants'
 import type ProductType from '../../interfaces/product'
 import type CategoryType from '../../interfaces/category'
 import { makeSerializable, areArraysEqual } from '../../lib/util'
@@ -14,14 +14,13 @@ import { useDispatch, useStore } from '../../store/context'
 
 type Props = {
   product: ProductType
-  category: CategoryType
   categories: CategoryType[]
 }
 
 export default function Product({ product, categories }: Props) {
 
   const router = useRouter()
-  const {categories: oldCategories} = useStore();
+  const {categories: oldCategories, itemsInCart} = useStore();
   const dispatch = useDispatch()
 
   if (!router.isFallback && !product?.slug) {
@@ -30,10 +29,22 @@ export default function Product({ product, categories }: Props) {
 
   useEffect(() => {
     if(oldCategories.length === 0 || !areArraysEqual(oldCategories, categories)) dispatch({
-      type: 'SET_CATEGORIES',
+      type: SET_CATEGORIES,
       payload: categories
     })
   }, [])
+
+  const addToCart = () => {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: product
+    })
+  }
+
+  const AddToCartButton = () =>  <>
+    <p>{itemsInCart.length}</p>
+    <button onClick={addToCart}>Add to cart</button>
+    </>
 
   const {name: productName} = product;
 
@@ -46,9 +57,7 @@ export default function Product({ product, categories }: Props) {
         <meta property="og:image" content={'tba'} />
       </Head>
       <Container>
-        <article className="mb-32">
-          <SingleProduct details={product} />
-        </article>
+        <SingleProduct addToCartButton={<AddToCartButton />} details={product} />
       </Container>
     </Layout>
   )
@@ -60,13 +69,9 @@ export async function getStaticProps({ params }: Params) {
   const product = await prisma.product.findUnique({
     where: { slug: params.product },
   })
-
-  const category = await prisma.category.findUnique({
-    where: {id: product?.categoryId}
-  });
   
   return {
-    props: {product: makeSerializable(product), categories: categories, category: category},
+    props: {product: makeSerializable(product), categories: categories},
     revalidate: 60
   }
 }

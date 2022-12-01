@@ -10,7 +10,7 @@ type Props = {
 const Home = ({products}: Props) => {
   
   return (
-    <section className="flex flex-col items-left md:justify-between mt-16 mb-16 md:mb-12">
+    <section className="flex flex-col items-left md:justify-between pt-6 pb-6">
       <h1 className="text-xl mb-7 md:text-3xl font-bold tracking-tighter leading-tight md:pr-8">
         New products
       </h1>

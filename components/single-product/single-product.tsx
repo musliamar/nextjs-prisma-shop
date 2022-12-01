@@ -5,16 +5,17 @@ import Images from './images'
 import type { MouseEvent } from 'react'
 
 type Props = {
-  details: ProductType;
+  details: ProductType
+  addToCartButton: JSX.Element
 }
 
-const Single = ({ details }: Props) => {
+const Single = ({ details, addToCartButton }: Props) => {
 
   const {name, description, manufacturer, attributes, price, images} = details;
 
   return (
-    <div className="bg-white">
-  <div className="flex flex-row pt-6 gap-14 justify-start">
+  <article className="bg-white">
+  <div className="flex flex-row pt-6 pb-6 gap-14 justify-start">
     <Images images={images} />
     <div className="flex flex-col w-1/2 max-w-lg">
 
@@ -56,9 +57,9 @@ const Single = ({ details }: Props) => {
         </div>
 
         <form className="mt-10">
-
+          {addToCartButton}
           <Attributes attributes={attributes} />
-          <button type="submit" className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
+          <button type="submit" className="mt-10 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
         </form>
         <div>
           <h3 className="sr-only">Description</h3>
@@ -70,7 +71,7 @@ const Single = ({ details }: Props) => {
       </div>
     </div>
   </div>
-</div>
+</article>
   )
 }
 

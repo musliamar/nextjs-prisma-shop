@@ -1,22 +1,19 @@
-import type CategoryType from '../interfaces/category'
+import type CategoryType from '../../interfaces/category'
 import Image from 'next/image';
-import {useStore} from '../store/context'
+import {useStore} from '../../store/context'
+import Link from 'next/link';
 
-type Props = {
-  button: JSX.Element
-}
-
-const Header = ({button}: Props) => {
+const Header = () => {
 
   const store = useStore()
-  const {categories} = store;
+  const {categories: categoriesToFilter, itemsInCart} = store;
+  const categories = categoriesToFilter.filter(c => c.isInNavigation === true)
 
   return (
  
 <div className="bg-white border-b border-gray-200">
   <header className="relative bg-white">
     <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">Get free delivery on orders over $100</p>
-    {button}
     <nav aria-label="Top" className="container mx-auto px-5">
         <div className="flex h-16 items-center">
           <button type="button" className="rounded-md bg-white p-2 text-gray-400 lg:hidden">
@@ -37,7 +34,7 @@ const Header = ({button}: Props) => {
         
           <div className="hidden lg:ml-8 lg:block lg:self-stretch">
             <div className="flex h-full space-x-8">
-              {categories?.map((category) => <a key={category.slug} href={'/'+category.slug} className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">{category.name}</a>)}
+              {categories?.map((category) => <Link key={category.slug} href={'/'+category.slug} className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">{category.name}</Link>)}
             </div>
           </div>
 
@@ -70,7 +67,7 @@ const Header = ({button}: Props) => {
                <svg className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                 </svg>
-                <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{itemsInCart.length}</span>
                 <span className="sr-only">items in cart, view bag</span>
               </a>
             </div>
